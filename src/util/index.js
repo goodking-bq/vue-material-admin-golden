@@ -66,6 +66,7 @@ const toggleFullScreen = () => {
   }
 };
 
+
 export default {
   randomElement,
   toggleFullScreen,

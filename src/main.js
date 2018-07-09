@@ -6,6 +6,11 @@ import router from './router'
 import Vuetify from 'vuetify'
 import './theme/default.styl';
 import 'font-awesome/css/font-awesome.css';
+import axios from 'axios'
+
+console.log(process.env)
+axios.defaults.baseURL = process.env.BASE_URL;
+Vue.prototype.$ajax = axios;
 Vue.config.productionTip = false;
 Vue.use(Vuetify, {
   // theme: {

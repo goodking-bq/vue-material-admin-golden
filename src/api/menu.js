@@ -8,5 +8,9 @@ const Menu = [
   },
 ]
 
+const getMenu = () => {
+  return this.$http.get('api/menus/')
+}
 
-export default Menu;
+
+export default getMenu;
