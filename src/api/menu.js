@@ -5,8 +5,6 @@ const Menu = [
     group: 'apps',
     icon: 'dashboard',
     name: 'Dashboard',
-
-    
   },
 ]
 
