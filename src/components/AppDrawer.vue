@@ -77,7 +77,7 @@
 </template>
 <script>
   import VuePerfectScrollbar from 'vue-perfect-scrollbar';
-
+  import Api from '@/api'
   export default {
     name: 'app-drawer',
     components: {
@@ -99,8 +99,8 @@
     }),
     beforeMount: function () {
       let _this = this;
-      console.log(this.$ajax.defaults)
-      this.$ajax.get('/api/menus/').then(function (data) {
+      console.log(Api)
+      this.$ajax.get(Api.menu.menu).then(function (data) {
         console.log(data);
         _this.menus = data.data;
       })
