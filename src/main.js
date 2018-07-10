@@ -7,8 +7,9 @@ import Vuetify from 'vuetify'
 import './theme/default.styl';
 import 'font-awesome/css/font-awesome.css';
 import axios from 'axios'
+import store from './store';
 
-console.log(process.env)
+console.log(process.env);
 axios.defaults.baseURL = process.env.BASE_URL;
 Vue.prototype.$ajax = axios;
 Vue.config.productionTip = false;
@@ -35,6 +36,7 @@ Vue.use(Vuetify, {
 new Vue({
   el: '#app',
   router,
+  store,
   components: {App},
   template: '<App/>'
 })
