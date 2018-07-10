@@ -5,10 +5,10 @@
     </div>
     <v-breadcrumbs divider="-">
       <v-breadcrumbs-item>
-      <v-icon larg>home</v-icon>
+        <v-icon larg>home</v-icon>
       </v-breadcrumbs-item>
       <v-breadcrumbs-item v-for="(item,key) in breadcrumbs" :key="key">
-      {{ item }}
+        {{ item }}
       </v-breadcrumbs-item>
     </v-breadcrumbs>
     <v-spacer></v-spacer>
@@ -21,42 +21,35 @@
 </template>
 
 <script>
-import Api from '@/api';
-export default {
-  data () {
-    return {
-      title: ''
-    };
-  },
-  beforeMount: function () {
-    let _this = this;
-    this.$ajax.get(Api.menu.menu).then(function (data) {
-      console.log(data);
-      _this.menus = data.data;
-    })
-  },
-  computed: {
-    breadcrumbs: function () {
-      let breadcrumbs = [];
-      menu.forEach(item => {
-        if (item.items) {
-          let child =  item.items.find(i => {
-            return i.component === this.$route.name;
-          });
-          if (child) {
-            breadcrumbs.push(item.title);
-            breadcrumbs.push(child.title);
-            this.title = child.title;
-          }
-        } else {
-          if (item.name === this.$route.name) {
-            this.title = item.title;
-            breadcrumbs.push(item.title);
-          }
-        }
-      });
-      return breadcrumbs;
+  export default {
+    data() {
+      return {
+        title: ''
+      };
     },
-  }
-};
+    computed: {
+      breadcrumbs: function () {
+        let breadcrumbs = [];
+        let menu = this.$store.getters.menus;
+        menu.forEach(item => {
+          if (item.items) {
+            let child = item.items.find(i => {
+              return i.component === this.$route.name;
+            });
+            if (child) {
+              breadcrumbs.push(item.title);
+              breadcrumbs.push(child.title);
+              this.title = child.title;
+            }
+          } else {
+            if (item.name === this.$route.name) {
+              this.title = item.title;
+              breadcrumbs.push(item.title);
+            }
+          }
+        });
+        return breadcrumbs;
+      },
+    }
+  };
 </script>
