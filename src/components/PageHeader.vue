@@ -5,10 +5,10 @@
     </div>
     <v-breadcrumbs divider="-">
       <v-breadcrumbs-item>
-      <v-icon larg>home</v-icon>
+        <v-icon larg>home</v-icon>
       </v-breadcrumbs-item>
       <v-breadcrumbs-item v-for="(item,key) in breadcrumbs" :key="key">
-      {{ item }}
+        {{ item }}
       </v-breadcrumbs-item>
     </v-breadcrumbs>
     <v-spacer></v-spacer>
@@ -17,39 +17,39 @@
         <v-icon class="text--secondary">refresh</v-icon>
       </v-btn>
     </div>
-  </v-layout>  
+  </v-layout>
 </template>
 
 <script>
-import menu from '@/api/menu';
-export default {
-  data () {
-    return {
-      title: ''
-    };
-  },
-  computed: {
-    breadcrumbs: function () {
-      let breadcrumbs = [];
-      menu.forEach(item => {
-        if (item.items) {
-          let child =  item.items.find(i => {
-            return i.component === this.$route.name;
-          });
-          if (child) {
-            breadcrumbs.push(item.title);
-            breadcrumbs.push(child.title);
-            this.title = child.title;
+  export default {
+    data() {
+      return {
+        title: ''
+      };
+    },
+    computed: {
+      breadcrumbs: function () {
+        let breadcrumbs = [];
+        let menu = this.$store.getters.menus;
+        menu.forEach(item => {
+          if (item.items) {
+            let child = item.items.find(i => {
+              return i.component === this.$route.name;
+            });
+            if (child) {
+              breadcrumbs.push(item.title);
+              breadcrumbs.push(child.title);
+              this.title = child.title;
+            }
+          } else {
+            if (item.name === this.$route.name) {
+              this.title = item.title;
+              breadcrumbs.push(item.title);
+            }
           }
-        } else {
-          if (item.name === this.$route.name) {
-            this.title = item.title;
-            breadcrumbs.push(item.title);
-          }
-        }
-      });
-      return breadcrumbs;
-    },    
-  }
-};
+        });
+        return breadcrumbs;
+      },
+    }
+  };
 </script>
