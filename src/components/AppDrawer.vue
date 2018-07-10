@@ -16,7 +16,7 @@
     </v-toolbar>
     <vue-perfect-scrollbar class="drawer-menu--scroll" :settings="scrollSettings">
       <v-list dense expand>
-        <template v-for="(item, i) in menus">
+        <template v-for="(item, i) in this.$store.getters.menus">
           <!--group with subitems-->
           <v-list-group v-if="item.items" :key="item.name" :group="item.group" :prepend-icon="item.icon"
                         no-action="no-action">
@@ -77,7 +77,7 @@
 </template>
 <script>
   import VuePerfectScrollbar from 'vue-perfect-scrollbar';
-  import Api from '@/api'
+
   export default {
     name: 'app-drawer',
     components: {
@@ -97,14 +97,6 @@
         maxScrollbarLength: 160
       }
     }),
-    beforeMount: function () {
-      let _this = this;
-      console.log(Api)
-      this.$ajax.get(Api.menu.menu).then(function (data) {
-        console.log(data);
-        _this.menus = data.data;
-      })
-    },
 
     computed: {
       computeGroupActive() {
