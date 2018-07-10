@@ -2,7 +2,7 @@
   <div>
     <v-data-table
       :headers="headers"
-      :items="desserts"
+      :items="projects"
       :search="search"
       :pagination.sync="pagination"
       hide-actions
@@ -17,7 +17,9 @@
     name: "Project",
     data() {
       return {
-        headers: [{text:"项目名"}]
+        headers: [{text: "项目名"}],
+        projects: [],
+        pagination: {}
       }
     }
   }

@@ -99,7 +99,6 @@
     }),
     beforeMount: function () {
       let _this = this;
-      console.log(Api)
       this.$ajax.get(Api.menu.menu).then(function (data) {
         console.log(data);
         _this.menus = data.data;

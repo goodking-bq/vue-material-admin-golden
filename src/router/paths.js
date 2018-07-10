@@ -15,4 +15,15 @@ export default [{
       /* webpackMode: "lazy" */
       `@/pages/Dashboard.vue`
       )
-  },]
+  },
+  {
+    path: '/project',
+    meta: {breadcrumb: true},
+    name: 'Project',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy" */
+      `@/pages/Project.vue`
+      )
+  },
+]

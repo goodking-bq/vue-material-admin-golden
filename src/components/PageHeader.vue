@@ -17,16 +17,23 @@
         <v-icon class="text--secondary">refresh</v-icon>
       </v-btn>
     </div>
-  </v-layout>  
+  </v-layout>
 </template>
 
 <script>
-import menu from '@/api/menu';
+import Api from '@/api';
 export default {
   data () {
     return {
       title: ''
     };
+  },
+  beforeMount: function () {
+    let _this = this;
+    this.$ajax.get(Api.menu.menu).then(function (data) {
+      console.log(data);
+      _this.menus = data.data;
+    })
   },
   computed: {
     breadcrumbs: function () {
@@ -49,7 +56,7 @@ export default {
         }
       });
       return breadcrumbs;
-    },    
+    },
   }
 };
 </script>
