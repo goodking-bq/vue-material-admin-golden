@@ -67,12 +67,12 @@
         color: '',
       }
     }),
-    beforeMount: function () {
-      this.$store.dispatch('update_if_null');
-    },
     computed: {},
 
     created() {
+      this.$nextTick(function () {
+        this.$store.dispatch('update_if_null');
+      });
       AppEvents.forEach(item => {
         this.$on(item.name, item.callback);
       });
