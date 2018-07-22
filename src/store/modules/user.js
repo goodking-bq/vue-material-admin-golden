@@ -1,4 +1,4 @@
-import axios from 'axios'
+import request from '@/util/request'
 import Api from '@/api'
 
 const user = {
@@ -20,7 +20,7 @@ const user = {
       const name = data.username.trim();
       const password = data.password.trim();
       return new Promise((resolve, reject) => {
-        axios({
+        request({
           url: Api.login,
           data: {username: name, password: password},
           method: 'post',

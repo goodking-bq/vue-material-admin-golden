@@ -1,4 +1,4 @@
-import axios from 'axios'
+import request from '@/util/request'
 import Api from '@/api'
 
 const menu = {
@@ -18,12 +18,13 @@ const menu = {
   actions: {
     getMenu(context) {
       return new Promise((resolve, reject) => {
-        axios.get(Api.menu.menu).then(function (data) {
+        request.get(Api.menu.menu).then(function (data) {
           context.commit('update', data.data);
           resolve(data)
         }).catch(error => {
           reject(error)
         })
+
       })
     },
   },

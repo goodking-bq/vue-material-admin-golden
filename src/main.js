@@ -6,14 +6,14 @@ import router from './router'
 import Vuetify from 'vuetify'
 import './theme/default.styl';
 import 'font-awesome/css/font-awesome.css';
-import axios from 'axios'
+import request from './util/request'
 import store from './store';
 
 console.log(process.env);
-axios.defaults.baseURL = process.env.BASE_URL;
-axios.defaults.withCredentials = true;
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-Vue.prototype.$ajax = axios;
+//axios.defaults.baseURL = process.env.BASE_URL;
+//axios.defaults.withCredentials = true;
+//axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+Vue.prototype.$ajax = request;
 Vue.config.productionTip = false;
 Vue.use(Vuetify, {
   // theme: {
