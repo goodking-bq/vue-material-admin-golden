@@ -11,6 +11,8 @@ import store from './store';
 
 console.log(process.env);
 axios.defaults.baseURL = process.env.BASE_URL;
+axios.defaults.withCredentials = true;
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 Vue.prototype.$ajax = axios;
 Vue.config.productionTip = false;
 Vue.use(Vuetify, {

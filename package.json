@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "font-awesome": "^4.7.0",
+    "js-cookies": "^1.0.4",
     "nprogress": "^0.2.0",
     "vue": "^2.5.2",
     "vue-perfect-scrollbar": "^0.1.0",

@@ -1,5 +1,7 @@
 import menu from './menu'
 
 export default {
-  menu
+  menu,
+  login: "/login",
+  logout:"/logout/"
 }

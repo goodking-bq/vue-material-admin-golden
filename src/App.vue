@@ -67,9 +67,6 @@
         color: '',
       }
     }),
-    beforeMount: function () {
-      this.$store.dispatch('update_if_null');
-    },
     computed: {},
 
     created() {

@@ -1,4 +1,4 @@
-export default [{
+const paths = [{
   path: '/',
   meta: {},
   name: 'Root',
@@ -15,4 +15,18 @@ export default [{
       /* webpackMode: "lazy" */
       `@/pages/Dashboard.vue`
       )
-  },]
+  },
+  {
+    path: '/login',
+    meta: {
+      public: true,
+    },
+    name: 'Login',
+    component: () => import(
+      /* webpackChunkName: "routes" */
+      /* webpackMode: "lazy-once" */
+      `@/pages/Login.vue`
+      )
+  },
+];
+export default paths
