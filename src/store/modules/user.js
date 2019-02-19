@@ -1,6 +1,7 @@
 import axios from 'axios'
 import Api from '@/api'
-
+import qs from "qs";
+import Util from "@/util"
 const user = {
   state: {
     isLogin: sessionStorage.getItem('isLogin') || ''
@@ -8,6 +9,7 @@ const user = {
   mutations: {
     setLogin(state) {
       state.isLogin = true;
+      console.log('set session')
       sessionStorage.setItem('isLogin', state.isLogin)
     },
     setLogOut(state) {
@@ -17,20 +19,36 @@ const user = {
   },
   actions: {
     Login(context, data) {
-      const name = data.username.trim();
-      const password = data.password.trim();
+      const phone = data.phone.trim();
+      const code = data.code.trim();
+      const remember_me = data.remember_me;
+      const fromData = qs.stringify({
+        phone: phone,
+        code: code,
+        remember_me: remember_me
+      })
+      console.log(Util.getCookie('_csrf_token'))
       return new Promise((resolve, reject) => {
         axios({
           url: Api.login,
-          data: {username: name, password: password},
-          method: 'post',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-        }).then(res => {
-          if (res.data.status === 0) {
-            context.commit('setLogin');
+          method: "post",
+          data: fromData,
+          headers: {
+            "X-CSRFToken": Util.getCookie('_csrf_token'),
+            'Content-Type': 'application/x-www-form-urlencoded'
           }
+        }).then(res => {
+          //if (res.data.status === 0) {
+            context.commit('setLogin');
+         //
           resolve(res);
         }).catch(error => {
+          console.log(error.response)
+          context.commit("setSnackbar", {
+            text: "登陆失败: " + error.response.data.message,
+            color: "error",
+            show: true
+          })
           reject(error)
         })
       })

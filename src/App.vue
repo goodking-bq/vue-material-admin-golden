@@ -74,6 +74,11 @@
         this.$on(item.name, item.callback);
       });
       window.getApp = this;
+      if(this.$store.getters.logined){
+       this.$store.dispatch("getMenu").then(() => {
+              this.$router.push({ path: "/" });
+            });
+      }
     },
     methods: {
       openThemeSettings() {

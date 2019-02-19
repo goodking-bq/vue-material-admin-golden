@@ -8,12 +8,14 @@ import './theme/default.styl';
 import 'font-awesome/css/font-awesome.css';
 import axios from 'axios'
 import store from './store';
-
+import Util from './util'
 console.log(process.env);
 axios.defaults.baseURL = process.env.BASE_URL;
 axios.defaults.withCredentials = true;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.headers.post["X-CSRFToken"] = Util.getCookie('_csrf_token');
 Vue.prototype.$ajax = axios;
+Vue.prototype.$axios = axios;
 Vue.config.productionTip = false;
 Vue.use(Vuetify, {
   // theme: {
